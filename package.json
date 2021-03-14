@@ -10,6 +10,7 @@
   "dependencies": {
     "blockly": "^4.20201217.0",
     "core-js": "^3.6.5",
+    "monaco-editor": "^0.23.0",
     "vue": "^3.0.0"
   },
   "devDependencies": {

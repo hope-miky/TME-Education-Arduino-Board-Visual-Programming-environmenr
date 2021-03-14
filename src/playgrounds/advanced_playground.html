@@ -92,24 +92,24 @@ function createWorkspace(blocklyDiv, options) {
   return workspace;
 }
 
-// function configurePlayground(playground) {
-//   // Rendering options.
-//   var gui = playground.getGUI();
-//   var renderingFolder = gui.addFolder('Rendering');
-//   var renderingOptions = {
-//     'font Size': 10,
-//   };
-//   renderingFolder.add(renderingOptions, 'font Size', 0, 50)
-//     .onChange(function(value) {
-//       var ws = playground.getWorkspace();
-//       var fontStyle = {
-//         'size': value
-//       };
-//       ws.getTheme().setFontStyle(fontStyle);
-//       // Refresh theme.
-//       ws.setTheme(ws.getTheme());
-//     });
-// }
+function configurePlayground(playground) {
+  // Rendering options.
+  var gui = playground.getGUI();
+  var renderingFolder = gui.addFolder('Rendering');
+  var renderingOptions = {
+    'font Size': 10,
+  };
+  renderingFolder.add(renderingOptions, 'font Size', 0, 50)
+    .onChange(function(value) {
+      var ws = playground.getWorkspace();
+      var fontStyle = {
+        'size': value
+      };
+      ws.getTheme().setFontStyle(fontStyle);
+      // Refresh theme.
+      ws.setTheme(ws.getTheme());
+    });
+}
 
 function initPlayground() {
 
