@@ -83,7 +83,6 @@ goog.require('Blockly.WorkspaceCommentSvg.render');
 'use strict';
 
 function start() {
-  setBackgroundColour();
   initPlayground();
 }
 
@@ -93,30 +92,27 @@ function createWorkspace(blocklyDiv, options) {
   return workspace;
 }
 
-function configurePlayground(playground) {
-  // Rendering options.
-  var gui = playground.getGUI();
-  var renderingFolder = gui.addFolder('Rendering');
-  var renderingOptions = {
-    'font Size': 10,
-  };
-  renderingFolder.add(renderingOptions, 'font Size', 0, 50)
-    .onChange(function(value) {
-      var ws = playground.getWorkspace();
-      var fontStyle = {
-        'size': value
-      };
-      ws.getTheme().setFontStyle(fontStyle);
-      // Refresh theme.
-      ws.setTheme(ws.getTheme());
-    });
-}
+// function configurePlayground(playground) {
+//   // Rendering options.
+//   var gui = playground.getGUI();
+//   var renderingFolder = gui.addFolder('Rendering');
+//   var renderingOptions = {
+//     'font Size': 10,
+//   };
+//   renderingFolder.add(renderingOptions, 'font Size', 0, 50)
+//     .onChange(function(value) {
+//       var ws = playground.getWorkspace();
+//       var fontStyle = {
+//         'size': value
+//       };
+//       ws.getTheme().setFontStyle(fontStyle);
+//       // Refresh theme.
+//       ws.setTheme(ws.getTheme());
+//     });
+// }
 
 function initPlayground() {
-  if (typeof window.createPlayground === 'undefined') {
-    alert('You need to run \'npm install\' in order to use this playground.');
-    return;
-  }
+
   var defaultOptions = {
         comments: true,
         collapse: true,
@@ -169,14 +165,6 @@ function initPlayground() {
       .then(function(playground) {
         configurePlayground(playground);
       });
-}
-
-function setBackgroundColour() {
-  // Set background colour to differentiate server vs local copy.
-  if (location.protocol == 'file:') {
-    var lilac = '#d6d6ff';
-    document.body.style.backgroundColor = lilac;
-  }
 }
 
 

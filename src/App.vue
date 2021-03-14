@@ -18,10 +18,54 @@
 
 <script>
 import Blockly from 'blockly';
+import {createPlayground} from '@blockly/dev-tools';
+
 export default {
   name: 'App',
   components: {
     
+  },
+
+  data () {
+    return {
+          defaultOptions: {
+        comments: true,
+        collapse: true,
+        disable: true,
+        grid:
+          {
+            spacing: 25,
+            length: 3,
+            colour: '#ccc',
+            snap: true
+          },
+        horizontalLayout: false,
+        maxBlocks: Infinity,
+        maxInstances: {'test_basic_limit_instances': 3},
+        maxTrashcanContents: 256,
+        media: '../../media/',
+        oneBasedIndex: true,
+        readOnly: false,
+        rtl: false,
+        move: {
+          scrollbars: true,
+          drag: true,
+          wheel: false,
+        },
+        toolbox: document.getElementById('toolbox'),
+        toolboxPosition: 'start',
+        renderer: 'geras',
+        zoom:
+          {
+            controls: true,
+            wheel: true,
+            startScale: 1.0,
+            maxScale: 4,
+            minScale: 0.25,
+            scaleSpeed: 1.1
+          }
+  },
+    }
   },
 
   mounted () {
@@ -65,13 +109,16 @@ export default {
   "colour": 230,
 }]);
 
-// eslint-disable-next-line no-unused-vars
-const codelabGenerator = new Blockly.Generator('JSON');
-
-    Blockly.inject('blocklyDiv', {
-        toolbox: document.getElementById('toolbox'),
-        scrollbars: false
+createPlayground(document.getElementById('blocklyDiv'), (blocklyDiv, options) => {
+  return Blockly.inject(blocklyDiv, options);
+}, this.defaultOptions).then(function(playground) {
+        // configurePlayground(playground);
+        console.log("================================")
+        console.log(playground)
       });
+
+
+    
   }
 }
 </script>
